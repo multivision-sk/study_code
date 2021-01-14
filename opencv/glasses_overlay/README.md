@@ -9,6 +9,6 @@
 
 
 ## reference 
-https://www.youtube.com/watch?v=tpWVyJqehG4&list=WL&index=8
-https://www.youtube.com/watch?v=IMWt52TuozA
+- https://www.youtube.com/watch?v=tpWVyJqehG4&list=WL&index=8
+- https://www.youtube.com/watch?v=IMWt52TuozA
 
