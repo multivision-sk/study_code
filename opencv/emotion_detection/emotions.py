@@ -11,7 +11,7 @@ from utils.inference import load_detection_model
 from utils.preprocessor import preprocess_input
 
 
-USE_WEBCAM = False # If false, loads video file source
+USE_WEBCAM = True # If false, loads video file source
 
 # parameters for loading data and images
 emotion_model_path = './models/emotion_model.hdf5'
@@ -36,6 +36,8 @@ emotion_window = []
 cv2.namedWindow('window_frame')
 video_capture = cv2.VideoCapture(0)
 
+#food recommend window
+food_window = []
 
 # Select video or webcam feed
 cap = None
@@ -98,8 +100,6 @@ while cap.isOpened(): # True:
         emotion_probability = np.max(emotion_prediction)
         emotion_label_arg = np.argmax(emotion_prediction)
         emotion_text = emotion_labels[emotion_label_arg]
-
-        result_food = recommend(emotion_text) #food recommend
         emotion_window.append(emotion_text)
 
 
@@ -130,14 +130,16 @@ while cap.isOpened(): # True:
         color = color.astype(int)
         color = color.tolist()
 
+        result_food = recommend(emotion_text)  # food recommend
+
         draw_bounding_box(face_coordinates, rgb_image, color)
-        draw_text(face_coordinates, rgb_image, emotion_mode,
+        draw_text(face_coordinates, rgb_image, result_food+' when '+emotion_mode,
                   color, 0, -45, 1, 1)
 
 
 
 
-    print(result_food)
+    #print(result_food)
 
     bgr_image = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2BGR)
     cv2.imshow('window_frame', bgr_image)
